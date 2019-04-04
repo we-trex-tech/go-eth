@@ -606,6 +606,9 @@ var (
 // reward. The total reward consists of the static block reward and rewards for
 // included uncles. The coinbase of each uncle block is also rewarded.
 func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
+
+	return; // ZACK
+
 	// Select the correct block reward based on chain progression
 	blockReward := FrontierBlockReward
 	if config.IsByzantium(header.Number) {
@@ -622,10 +625,10 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 		r.Sub(r, header.Number)
 		r.Mul(r, blockReward)
 		r.Div(r, big8)
-		state.AddBalance(uncle.Coinbase, r)
+		state.AddBalance(uncle.Coinbase, r) //ZACK
 
 		r.Div(blockReward, big32)
-		reward.Add(reward, r)
+		reward.Add(reward, r) // ZACK
 	}
-	state.AddBalance(header.Coinbase, reward)
+	// state.AddBalance(header.Coinbase, reward) //ZACK
 }
