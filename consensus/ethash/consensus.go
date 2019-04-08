@@ -616,22 +616,22 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 		blockReward = ConstantinopleBlockReward
 	}
 
-	blockReward.SetString("0", 10) //Zack
+	blockReward.SetString("0", 10) 
 
 	// Accumulate the rewards for the miner and any included uncles
 	reward := new(big.Int).Set(blockReward)
-/*
+
 	r := new(big.Int)
 	for _, uncle := range uncles {
 		r.Add(uncle.Number, big8)
 		r.Sub(r, header.Number)
 		r.Mul(r, blockReward)
 		r.Div(r, big8)
-		state.AddBalance(uncle.Coinbase, r) //ZACK
+		state.AddBalance(uncle.Coinbase, r) 
 
 		r.Div(blockReward, big32)
-		reward.Add(reward, r) // ZACK
+		reward.Add(reward, r) 
 	}
-*/
-	state.AddBalance(header.Coinbase, reward) //ZACK
+
+	state.AddBalance(header.Coinbase, reward) 
 }
